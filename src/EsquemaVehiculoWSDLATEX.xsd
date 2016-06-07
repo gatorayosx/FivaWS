@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.trafico.es/atex/esquema/vehiculo" xmlns="http://www.trafico.es/atex/esquema/vehiculo" xmlns:tipos="http://www.trafico.es/atex/esquema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://www.trafico.es/atex/esquema" schemaLocation="EsquemaTiposWSDLATEX.xsd"/>
+	<xs:element name="Vehiculo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="Identificacion"/>
+				<xs:element minOccurs="0" ref="Titular"/>
+				<xs:element minOccurs="0" ref="Cotitulares"/>
+				<xs:element minOccurs="0" ref="DomicilioVehiculo"/>
+				<xs:element minOccurs="0" ref="Duplicados"/>
+				<xs:element minOccurs="0" ref="Poseedores"/>
+				<xs:element minOccurs="0" ref="Transferencias"/>
+				<xs:element minOccurs="0" ref="Bajas"/>
+				<xs:element minOccurs="0" ref="Itvs"/>
+				<xs:element minOccurs="0" ref="Limitaciones"/>
+				<xs:element minOccurs="0" ref="Embargos"/>
+				<xs:element minOccurs="0" ref="Precintos"/>
+				<xs:element minOccurs="0" ref="Avisos"/>
+				<xs:element minOccurs="0" ref="Denegatorias"/>
+				<xs:element minOccurs="0" ref="Seguros"/>
+				<xs:element minOccurs="0" ref="Arrendatarios"/>
+				<xs:element minOccurs="0" ref="Tutores"/>
+				<xs:element minOccurs="0" ref="ConductoresHabituales"/>
+				<xs:element minOccurs="0" ref="ServicioAutonomo"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AtexFault">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Codigo" type="xs:string"/>
+				<xs:element name="Descripcion" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!---->
+	<xs:element name="Identificacion">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="Matriculacion">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="ClaseMatriculacion" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Matricula" type="xs:string"/>
+							<xs:element minOccurs="0" name="FechaMatriculacion" type="xs:date"/>
+							<xs:element minOccurs="0" ref="tipos:Jefatura"/>
+							<xs:element minOccurs="0" ref="tipos:Sucursal"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="DescripcionVehiculo">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Bastidor" type="xs:string"/>
+							<xs:element minOccurs="0" name="Nive" type="xs:string"/>
+							<xs:element minOccurs="0" name="Marca" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Modelo" type="xs:string"/>
+							<xs:element minOccurs="0" name="Color" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Procedencia" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Servicio" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="TipoVehiculo" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="TipoIndustria" type="tipos:CodigoDescripcionAlfa"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="DatosTecnicos">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Propulsion" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Cilindrada" type="xs:float"/>
+							<xs:element id="POTEN" minOccurs="0" name="PotenciaFiscal" type="xs:float"/>
+							<xs:element minOccurs="0" name="Tara" type="xs:int"/>
+							<xs:element id="PEMAX" minOccurs="0" name="PesoMax" type="xs:int"/>
+							<xs:element minOccurs="0" name="NumPlazas">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" name="Normales" type="xs:int"/>
+										<xs:element minOccurs="0" name="Mixtas" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" name="TipoItv" type="xs:string"/>
+							<xs:element minOccurs="0" name="Variante" type="xs:string"/>
+							<xs:element minOccurs="0" name="Version" type="xs:string"/>
+							<xs:element minOccurs="0" name="NumHomologacion" type="xs:string"/>
+							<xs:element id="MTMA" minOccurs="0" name="MasaMaxTecnica" type="xs:int"/>
+							<xs:element id="MMC" minOccurs="0" name="MasaEnServicio" type="xs:int"/>
+							<xs:element id="KW" minOccurs="0" name="PotenciaNetaMax" type="xs:float"/>
+							<xs:element id="RPP" minOccurs="0" name="RelacionPotenciaPeso" type="xs:float"/>
+							<xs:element minOccurs="0" name="NumPlazasPie" type="xs:int"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="MatriculacionTemporal">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="MatriculaAnterior" type="xs:string"/>
+							<xs:element minOccurs="0" name="FechaPrimeraMatriculacion" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechasProrroga">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="5" minOccurs="0" name="FechaProrroga">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element minOccurs="0" name="FechaInicio" type="xs:date"/>
+													<xs:element minOccurs="0" name="FechaFin" type="xs:date"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="Rematriculaciones">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="Rematriculacion">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element minOccurs="0" name="Razon" type="tipos:CodigoDescripcionAlfa"/>
+										<xs:element minOccurs="0" name="FechaRematriculacion" type="xs:date"/>
+										<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="FechasControl">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="FechaItv" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaCaducidadTuristica" type="xs:date"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="Indicadores">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Tutela" type="xs:string"/>
+							<xs:element minOccurs="0" name="Posesion" type="xs:string"/>
+							<xs:element minOccurs="0" name="LimitacionDisposicion" type="xs:string"/>
+							<xs:element minOccurs="0" name="Sustraccion" type="xs:string"/>
+							<xs:element minOccurs="0" name="ExcesoPesoDimension" type="xs:string"/>
+							<xs:element minOccurs="0" name="Importacion" type="xs:string"/>
+							<xs:element minOccurs="0" name="CargaEEFF" nillable="true" type="xs:boolean"/>
+							<xs:element minOccurs="0" name="Renting" nillable="true" type="xs:boolean"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Titular">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="DatosPersona" type="tipos:datosPersona"/>
+				<xs:element minOccurs="0" name="Domicilio" type="tipos:Domicilio"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Cotitulares">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Cotitular">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="DocumentoId" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DomicilioVehiculo" type="tipos:Domicilio"/>
+	<xs:element name="Duplicados">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Duplicado">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Razon" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+							<xs:element minOccurs="0" ref="tipos:Jefatura"/>
+							<xs:element minOccurs="0" ref="tipos:Sucursal"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Poseedores">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Poseedor">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Situacion" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+							<xs:element minOccurs="0" ref="tipos:Jefatura"/>
+							<xs:element minOccurs="0" ref="tipos:Sucursal"/>
+							<xs:element minOccurs="0" name="Filiacion" type="xs:string"/>
+							<xs:element minOccurs="0" name="DocumentoId" type="xs:string"/>
+							<xs:element minOccurs="0" name="Domicilio" type="tipos:Domicilio"/>
+							<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Transferencias">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Transferencia">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+							<xs:element minOccurs="0" ref="tipos:Jefatura"/>
+							<xs:element minOccurs="0" ref="tipos:Sucursal"/>
+							<xs:element minOccurs="0" name="DocumentoIdAnterior" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Bajas">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Baja">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="TipoBaja" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="FechaInicio" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaFin" type="xs:date"/>
+							<xs:element minOccurs="0" ref="tipos:Jefatura"/>
+							<xs:element minOccurs="0" ref="tipos:Sucursal"/>
+							<xs:element minOccurs="0" name="Causa" type="tipos:CodigoDescripcionAlfa"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Itvs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Itv">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="FechaItv" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaCaducidad" type="xs:date"/>
+							<xs:element minOccurs="0" name="Estacion" type="xs:string"/>
+							<xs:element minOccurs="0" ref="tipos:Provincia"/>
+							<xs:element minOccurs="0" name="MotivoItv" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Resultado" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+							<xs:element minOccurs="0" name="FechaFinAnterior" type="xs:date"/>
+							<xs:element minOccurs="0" name="Kilometraje" type="xs:int"/>
+							<xs:element minOccurs="0" name="CuentaHoras" type="xs:int"/>
+							<xs:element minOccurs="0" name="Defectos">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" minOccurs="0" name="Defecto">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element minOccurs="0" name="Tipo" type="tipos:CodigoDescripcionAlfa"/>
+													<xs:element minOccurs="0" name="Gravedad" type="tipos:CodigoDescripcionAlfa"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Limitaciones">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Limitacion">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Tipo" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Registro" type="xs:string"/>
+							<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+							<xs:element minOccurs="0" name="FinancieraDomicilio" type="xs:string"/>
+							<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Embargos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Embargo" type="tipos:EmbargoPrecinto"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Precintos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Precinto" type="tipos:EmbargoPrecinto"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Avisos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Aviso" type="tipos:AvisoDenegatoria"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Denegatorias">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Denegatoria" type="tipos:AvisoDenegatoria"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Seguros">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Seguro">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Contrato" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="FechaInicio" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaFin" type="xs:date"/>
+							<xs:element minOccurs="0" name="Entidad" type="tipos:CodigoDescripcionAlfa"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Arrendatarios">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Arrendatario">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="DocumentoId" type="xs:string"/>
+							<xs:element minOccurs="0" name="FechaInicio" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaFin" type="xs:date"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Tutores">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Tutor">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="DocumentoId" type="xs:string"/>
+							<xs:element minOccurs="0" name="Tramite" type="xs:string"/>
+							<xs:element minOccurs="0" name="FechaTramite" type="xs:date"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ConductoresHabituales">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="ConductorHabitual">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="DocumentoId" type="xs:string"/>
+							<xs:element minOccurs="0" name="FechaInicio" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaFin" type="xs:date"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ServicioAutonomo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="indicador" nillable="true" type="xs:boolean"/>
+				<xs:element minOccurs="0" name="codigoIAE" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

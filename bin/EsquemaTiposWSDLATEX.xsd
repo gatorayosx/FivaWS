@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.trafico.es/atex/esquema" xmlns="http://www.trafico.es/atex/esquema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="CodigoDescripcionAlfa">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Codigo" type="xs:string"/>
+			<xs:element minOccurs="0" name="Descripcion" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Domicilio">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Calle" type="xs:string"/>
+			<xs:element minOccurs="0" name="Pueblo" type="xs:string"/>
+			<xs:element minOccurs="0" name="Municipio" type="xs:string"/>
+			<xs:element minOccurs="0" ref="Provincia"/>
+			<xs:element minOccurs="0" name="CodigoPostal" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AvisoDenegatoria">
+		<xs:sequence>
+			<xs:element minOccurs="0" ref="Jefatura"/>
+			<xs:element minOccurs="0" ref="Sucursal"/>
+			<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Tramite">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="TipoPermiso" type="CodigoDescripcionAlfa"/>
+			<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+			<xs:element minOccurs="0" ref="Jefatura"/>
+			<xs:element minOccurs="0" ref="Sucursal"/>
+			<xs:element minOccurs="0" name="Tipo" type="CodigoDescripcionAlfa"/>
+			<xs:element minOccurs="0" name="ConcesionObligatoria" type="xs:string"/>
+			<xs:element minOccurs="0" name="CentroMedico" type="xs:string"/>
+			<xs:element minOccurs="0" name="ClaseAfectacion" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EmbargoPrecinto">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Expediente" type="xs:string"/>
+			<xs:element minOccurs="0" name="FechaTramite" type="xs:date"/>
+			<xs:element minOccurs="0" name="FechaMaterializacion" type="xs:date"/>
+			<xs:element minOccurs="0" name="Autoridad">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Identificacion" type="xs:string"/>
+						<xs:element minOccurs="0" name="Datos" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Jefatura">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="Codigo" type="xs:string"/>
+				<xs:element minOccurs="0" name="Descripcion" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Sucursal">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="Codigo" type="xs:string"/>
+				<xs:element minOccurs="0" name="Descripcion" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Provincia">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="Codigo" type="xs:string"/>
+				<xs:element minOccurs="0" name="Descripcion" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="datosPersona">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Juridica">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="Cif" type="xs:string"/>
+						<xs:element minOccurs="0" name="RazonSocial" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="Fisica">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="DocumentoId" type="xs:string"/>
+						<xs:element minOccurs="0" name="Apellido1" type="xs:string"/>
+						<xs:element minOccurs="0" name="Apellido2" type="xs:string"/>
+						<xs:element minOccurs="0" name="Nombre" type="xs:string"/>
+						<xs:element minOccurs="0" name="Sexo" type="xs:string"/>
+						<xs:element minOccurs="0" name="FechaNacimiento" type="xs:date"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

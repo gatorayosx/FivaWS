@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.trafico.es/atex/esquema/persona" xmlns="http://www.trafico.es/atex/esquema/persona" xmlns:tipos="http://www.trafico.es/atex/esquema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import namespace="http://www.trafico.es/atex/esquema" schemaLocation="EsquemaTiposWSDLATEX.xsd"/>
+	<xs:element name="Persona">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="IdentificacionPersona"/>
+				<xs:element minOccurs="0" ref="DomicilioPersona"/>
+				<xs:element minOccurs="0" ref="Indicadores"/>
+				<xs:element minOccurs="0" ref="Examenes"/>
+				<xs:element minOccurs="0" ref="Incidencias"/>
+				<xs:element minOccurs="0" ref="Tramites"/>
+				<xs:element minOccurs="0" ref="Permisos"/>
+				<xs:element minOccurs="0" ref="Sanciones"/>
+				<xs:element minOccurs="0" ref="Matriculas"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ListaPersonas">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="DatosFiliacion">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Filiacion" nillable="true" type="xs:string"/>
+							<xs:element name="DocumentoId" nillable="true" type="xs:string"/>
+							<xs:element name="FechaNacimiento" nillable="true" type="xs:date"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IdentificacionPersona" type="tipos:datosPersona"/>
+	<xs:element name="DomicilioPersona" type="tipos:Domicilio"/>
+	<xs:element name="Indicadores">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="Lentes" nillable="true" type="xs:boolean"/>
+				<xs:element minOccurs="0" name="CondicionRestrictiva" nillable="true" type="xs:boolean"/>
+				<xs:element minOccurs="0" name="FuncionAutoescuela" type="tipos:CodigoDescripcionAlfa"/>
+				<xs:element minOccurs="0" name="TransporteEscolar" nillable="true" type="xs:boolean"/>
+				<xs:element minOccurs="0" name="MercanciasPeligrosas" nillable="true" type="xs:boolean"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Examenes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="Examen">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="TipoPermiso" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+							<xs:element minOccurs="0" ref="tipos:Jefatura"/>
+							<xs:element minOccurs="0" ref="tipos:Sucursal"/>
+							<xs:element minOccurs="0" name="Autoescuela" type="xs:string"/>
+							<xs:element minOccurs="0" name="CentroMedico" type="xs:string"/>
+							<xs:element minOccurs="0" name="Situacion" type="xs:string"/>
+							<xs:element minOccurs="0" name="Resultados">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element maxOccurs="unbounded" ref="Resultado"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Resultado">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="TipoExamen" type="tipos:CodigoDescripcionAlfa"/>
+				<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+				<xs:element minOccurs="0" name="Calificacion" type="tipos:CodigoDescripcionAlfa"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Incidencias">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" name="Incidencia">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Tipo" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Documento" type="xs:string"/>
+							<xs:element minOccurs="0" ref="tipos:Jefatura"/>
+							<xs:element minOccurs="0" ref="tipos:Sucursal"/>
+							<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+							<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Tramites">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" name="Expediciones">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="Expedicion" type="tipos:Tramite"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="Prorrogas">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="Prorroga" type="tipos:Tramite"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" name="Duplicados">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="Duplicado" type="tipos:Tramite"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Permisos">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Pemiso">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="FechaInicio" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaFin" type="xs:date"/>
+							<xs:element minOccurs="0" name="TipoPermiso" type="tipos:CodigoDescripcionAlfa"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Sanciones">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Sancion">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Autoridad" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Expediente" type="xs:string"/>
+							<xs:element minOccurs="0" name="Fecha" type="xs:date"/>
+							<xs:element minOccurs="0" name="FechaFin" type="xs:date"/>
+							<xs:element minOccurs="0" name="TipoSancion" type="tipos:CodigoDescripcionAlfa"/>
+							<xs:element minOccurs="0" name="Duracion" type="xs:string"/>
+							<xs:element minOccurs="0" name="Motivo" type="xs:string"/>
+							<xs:element minOccurs="0" name="Anotacion" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Matriculas">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="Matricula">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element minOccurs="0" name="Placa" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

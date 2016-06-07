@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://www.trafico.es/atex/servicio" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ns="http://www.trafico.es/atex/esquema" xmlns:ns1="http://www.trafico.es/atex/esquema/persona" xmlns:ns2="http://www.trafico.es/atex/esquema/vehiculo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.trafico.es/atex/servicio" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema elementFormDefault="qualified" targetNamespace="http://www.trafico.es/atex/servicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:import schemaLocation="EsquemaVehiculoWSDLATEX.xsd" namespace="http://www.trafico.es/atex/esquema/vehiculo"/> 
+		<xsd:import schemaLocation="EsquemaPersonaWSDLATEX.xsd" namespace="http://www.trafico.es/atex/esquema/persona"/> 
+		<!--Consulta de Vehiculo-->
+			<xsd:element name="SolicitudBastidor">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Bastidor" type="xsd:string"/>
+						<xsd:element ref="tns:DatosUsuario"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SolicitudMatricula">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Matricula" type="xsd:string"/>
+						<xsd:element ref="tns:DatosUsuario"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SolicitudNive">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="Nive" type="xsd:string"/>
+						<xsd:element ref="tns:DatosUsuario"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<!--Consulta de Persona-->
+			<xsd:element name="SolicitudDocumentoId">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="DocumentoId" type="xsd:string"/>
+						<xsd:element ref="tns:DatosUsuario"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="SolicitudFiliacion">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="PersonaJuridica" type="xsd:boolean"/>
+						<xsd:element minOccurs="0" name="SolicitudPersonaJuridica">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="RazonSocial" type="xsd:string"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element minOccurs="0" name="SolicitudPersonaFisica">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="PrimerApellido" type="xsd:string"/>
+									<xsd:element minOccurs="0" name="SegundoApellido" type="xsd:string"/>
+									<xsd:element minOccurs="0" name="Nombre" type="xsd:string"/>
+									<xsd:element minOccurs="0" name="FechaNacimiento" type="xsd:date"/>
+									<xsd:element minOccurs="0" name="AnyoNacimiento" type="xsd:int"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<xsd:element ref="tns:DatosUsuario"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<!---->
+			<xsd:element name="DatosUsuario">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="IdUsuario" type="xsd:string"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="consultarMatriculaFault">
+    <wsdl:part element="ns2:AtexFault" name="atexFault"/>
+  </wsdl:message>
+  <wsdl:message name="consultarFiliacionRequest">
+    <wsdl:part element="tns:SolicitudFiliacion" name="solicitudFiliacion"/>
+  </wsdl:message>
+  <wsdl:message name="consultarFiliacionResponse">
+    <wsdl:part element="ns1:ListaPersonas" name="listaPersonas"/>
+  </wsdl:message>
+  <wsdl:message name="consultarFiliacionFault">
+    <wsdl:part element="ns2:AtexFault" name="atexFault"/>
+  </wsdl:message>
+  <wsdl:message name="consultarNiveFault">
+    <wsdl:part element="ns2:AtexFault" name="atexFault"/>
+  </wsdl:message>
+  <wsdl:message name="consultarBastidorRequest">
+    <wsdl:part element="tns:SolicitudBastidor" name="solicitudBastidor"/>
+  </wsdl:message>
+  <wsdl:message name="consultarNiveResponse">
+    <wsdl:part element="ns2:Vehiculo" name="vehiculo"/>
+  </wsdl:message>
+  <wsdl:message name="consultarDocumentoFault">
+    <wsdl:part element="ns2:AtexFault" name="atexFault"/>
+  </wsdl:message>
+  <wsdl:message name="consultarBastidorResponse">
+    <wsdl:part element="ns2:Vehiculo" name="vehiculo"/>
+  </wsdl:message>
+  <wsdl:message name="consultarMatriculaRequest">
+    <wsdl:part element="tns:SolicitudMatricula" name="solicitudMatricula"/>
+  </wsdl:message>
+  <wsdl:message name="consultarBastidorFault">
+    <wsdl:part element="ns2:AtexFault" name="atexFault"/>
+  </wsdl:message>
+  <wsdl:message name="consultarDocumentoResponse">
+    <wsdl:part element="ns1:Persona" name="persona"/>
+  </wsdl:message>
+  <wsdl:message name="consultarDocumentoRequest">
+    <wsdl:part element="tns:SolicitudDocumentoId" name="solicitudDocumentoId"/>
+  </wsdl:message>
+  <wsdl:message name="consultarMatriculaResponse">
+    <wsdl:part element="ns2:Vehiculo" name="vehiculo"/>
+  </wsdl:message>
+  <wsdl:message name="consultarNiveRequest">
+    <wsdl:part element="tns:SolicitudNive" name="solicitudNive"/>
+  </wsdl:message>
+  <wsdl:portType name="ATEX_WS">
+    <wsdl:operation name="consultarMatricula">
+      <wsdl:input message="tns:consultarMatriculaRequest" name="consultarMatriculaRequest"/>
+      <wsdl:output message="tns:consultarMatriculaResponse" name="consultarMatriculaResponse"/>
+      <wsdl:fault message="tns:consultarMatriculaFault" name="consultarMatriculaFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarBastidor">
+      <wsdl:input message="tns:consultarBastidorRequest" name="consultarBastidorRequest"/>
+      <wsdl:output message="tns:consultarBastidorResponse" name="consultarBastidorResponse"/>
+      <wsdl:fault message="tns:consultarBastidorFault" name="consultarBastidorFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarNive">
+      <wsdl:input message="tns:consultarNiveRequest" name="consultarNiveRequest"/>
+      <wsdl:output message="tns:consultarNiveResponse" name="consultarNiveResponse"/>
+      <wsdl:fault message="tns:consultarNiveFault" name="consultarNiveFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarPersonaPorDocumento">
+      <wsdl:input message="tns:consultarDocumentoRequest" name="consultarDocumentoRequest"/>
+      <wsdl:output message="tns:consultarDocumentoResponse" name="consultarDocumentoResponse"/>
+      <wsdl:fault message="tns:consultarDocumentoFault" name="consultarDocumentoFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="consultarPersonaPorFiliacion">
+      <wsdl:input message="tns:consultarFiliacionRequest" name="consultarFiliacionRequest"/>
+      <wsdl:output message="tns:consultarFiliacionResponse" name="consultarFiliacionResponse"/>
+      <wsdl:fault message="tns:consultarFiliacionFault" name="consultarFiliacionFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ATEX" type="tns:ATEX_WS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="consultarMatricula">
+      <soap:operation soapAction="urn:consultarMatricula" style="document"/>
+      <wsdl:input name="consultarMatriculaRequest">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="solicitudMatricula" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultarMatriculaResponse">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vehiculo" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="consultarMatriculaFault">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="consultarMatriculaFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="consultarBastidor">
+      <soap:operation soapAction="urn:consultarBastidor" style="document"/>
+      <wsdl:input name="consultarBastidorRequest">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="solicitudBastidor" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultarBastidorResponse">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vehiculo" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="consultarBastidorFault">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="consultarBastidorFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="consultarNive">
+      <soap:operation soapAction="urn:consultarNive" style="document"/>
+      <wsdl:input name="consultarNiveRequest">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="solicitudNive" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultarNiveResponse">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="vehiculo" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="consultarNiveFault">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="consultarNiveFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="consultarPersonaPorDocumento">
+      <soap:operation soapAction="urn:consultarPersonaPorDocumento" style="document"/>
+      <wsdl:input name="consultarDocumentoRequest">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="solicitudDocumentoId" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultarDocumentoResponse">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="persona" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="consultarDocumentoFault">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="consultarDocumentoFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="consultarPersonaPorFiliacion">
+      <soap:operation soapAction="urn:consultarPersonaPorFiliacion" style="document"/>
+      <wsdl:input name="consultarFiliacionRequest">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="solicitudFiliacion" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="consultarFiliacionResponse">
+        <soap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" parts="listaPersonas" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="consultarFiliacionFault">
+        <soap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="consultarFiliacionFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ATEX">
+    <wsdl:port binding="tns:ATEX" name="ATEX">
+     <!--  <soap:address location="https://apl-cpd.dgt.es:443/WS_ATEX4_Internet/services/ATEX"/> -->
+     <!--       <soap:address location="https://prews.tirea.es:443/WS_ATEX4_Internet"/> -->
+     <!--     <soap:address location="https://sedeapl.dgt.gob.es/WS_ATEX4_Internet/services/ATEX"/> -->
+ <soap:address location="https://prews.tirea.es:443/WS_ATEX4/services/ATEX"/> 
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
